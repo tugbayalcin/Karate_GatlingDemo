@@ -11,6 +11,7 @@ public class CreateTokens {
     private static final ArrayList<String> tokens = new ArrayList<>();
     private static final AtomicInteger counter = new AtomicInteger();
 
+
     private static String[] emails = {
             "kardemo1@test.com",
             "kardemo2@test.com",
