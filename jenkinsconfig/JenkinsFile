@@ -3,7 +3,7 @@ pipeline {
         parameters {
         string(name: 'RunnerName', defaultValue: "CDArticleSimulation", description: '')
         string(name: 'TagName', defaultValue: "load", description: '')
-        string(name: 'UserCount', defaultValue: "10", description: '')
+        string(name: 'UsersCount', defaultValue: "10", description: '')
         string(name: 'Duration', defaultValue: "10", description: '')
         string(name: 'ConstantDuration', defaultValue: "10", description: '')
         string(name: 'ConstantUser', defaultValue: "10", description: '')
@@ -15,7 +15,8 @@ pipeline {
                     steps {
                         script {
                             sh """
-                                mvn -s ./jenkinsconfig/settings.xml test-compile gatling:test -Dgatling.simulationClass=performanceRunners.CDArticleSimulation
+                                mvn -s ./jenkinsconfig/settings.xml test-compile gatling:test -Dgatling.simulationClass=performanceRunners.${RunnerName} -DusersCount=${UsersCount} -Dduration=${Duration} -DconstantDuration=${ConstantDuration} -DconstantUser=${ConstantUser} -DfeatureName=${FeatureName} -DtagName=${TagName}
+
                             """
                         }
                     }
